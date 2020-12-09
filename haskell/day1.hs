@@ -8,7 +8,12 @@ import Data.List
 import System.Environment
 
 main :: IO ()
-main = undefined
+main = do
+  args <- getArgs
+  case args !! 0 of
+    "p1" -> p1 $ args !! 1
+    "p2" -> p2 $ args !! 1
+    _    -> putStrLn "invalid arguments"
 
 -- part 1
 p1 :: FilePath -> IO ()
