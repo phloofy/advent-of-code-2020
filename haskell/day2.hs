@@ -1,4 +1,4 @@
-module Day2(p1) where
+module Day2(p1,p2) where
 
 import Data.Char
 import System.Environment
