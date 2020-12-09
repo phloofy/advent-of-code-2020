@@ -1,2 +1,3 @@
 haskell/*.hi
 haskell/*.o
+input/*
