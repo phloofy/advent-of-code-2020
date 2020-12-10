@@ -1,4 +1,4 @@
-module Day3(p1) where
+module Day3(p1,p2) where
 
 import System.Environment
 
