@@ -1,7 +1,5 @@
 {-# LANGUAGE FlexibleContexts #-}
 
-module Day1(p1, p2) where
-
 import Control.Monad.ST
 import Data.Array.ST
 import Data.List

@@ -1,13 +1,10 @@
-module Day5(p1,p2) where
+import Advent
 
 import Data.Bits
 import Data.List
 
 main :: IO ()
 main = undefined
-
-interactFile :: (String -> String) -> FilePath -> IO ()
-interactFile f = (>>= putStrLn) . fmap f . readFile
 
 p1 :: FilePath -> IO ()
 p1 = interactFile $ show . go 10 0 . map (map convert) . words

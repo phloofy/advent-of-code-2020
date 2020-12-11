@@ -1,15 +1,11 @@
-module Day4(p1,p2) where
+import Advent
 
 import Data.Char
 import Data.Maybe
 import qualified Data.Set as Set
 import Text.ParserCombinators.ReadP
 
-main :: IO ()
 main = undefined
-
-interactFile :: (String -> String) -> FilePath -> IO ()
-interactFile f = (>>= putStrLn) . fmap f . readFile
 
 p1 :: FilePath -> IO ()
 p1 = interactFile $ show . solve . map (>>= words) . wordsBy (== "\r") . lines
@@ -23,18 +19,6 @@ p2 = interactFile $ show . solve . map (>>= words) . wordsBy (== "\r") . lines
     solve :: [[String]] -> Int
     solve = length . filter valid
     valid = Set.isSubsetOf required . Set.fromList . map (maybe "" id . validKey)
-
-wordsBy :: (a -> Bool) -> [a] -> [[a]]
-wordsBy f xs = go (reverse xs) [] []
-  where
-    go [] [] zs = zs
-    go [] ys zs = (ys:zs)
-    go (x:xs) [] zs
-      | f x       = go xs [] zs
-      | otherwise = go xs (x:[]) zs      
-    go (x:xs) ys zs
-      | f x       = go xs [] (ys:zs)
-      | otherwise = go xs (x:ys) zs
 
 required :: Set.Set String
 required = Set.fromList ["byr","iyr","eyr","hgt","hcl","ecl","pid"]

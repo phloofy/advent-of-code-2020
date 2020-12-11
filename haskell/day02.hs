@@ -1,4 +1,4 @@
-module Day2(p1,p2) where
+import Advent
 
 import Data.Char
 import System.Environment
@@ -14,28 +14,22 @@ main = do
 
 -- part 1
 p1 :: FilePath -> IO ()
-p1 = (>>= putStrLn) . fmap solve . readFile
+p1 = interactFile $ show . length . filter valid . lines
   where
-    solve :: String -> String
-    solve = show . length . filter valid . lines
-      where
-        valid :: String -> Bool
-        valid s = let x = info s
-                      (p,q,r) = fst x
-                      len = length $ filter (== r) (snd x) in
-          len >= p && len <= q
+    valid :: String -> Bool
+    valid s = let x = info s
+                  (p,q,r) = fst x
+                  len = length $ filter (== r) (snd x) in
+      len >= p && len <= q
           
 -- part 2
 p2 :: FilePath -> IO ()
-p2 = (>>= putStrLn) . fmap solve . readFile
+p2 = interactFile $ show . length . filter valid . lines
   where
-    solve :: String -> String
-    solve = show . length . filter valid . lines
-      where
-        valid :: String -> Bool
-        valid s = let x = info s
-                      (p,q,r) = fst x in
-          (snd x !! (p-1) == r) /= (snd x !! (q-1) == r)
+    valid :: String -> Bool
+    valid s = let x = info s
+                  (p,q,r) = fst x in
+      (snd x !! (p-1) == r) /= (snd x !! (q-1) == r)
 
 info :: String -> ((Int,Int,Char),String)
 info = head . readP_to_S parser
