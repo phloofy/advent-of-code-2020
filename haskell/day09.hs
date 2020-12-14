@@ -13,7 +13,6 @@ p2 = interactFile $ show . solve . map read . words
     solve :: [Int] -> Int
     solve xs = go xs xs 0 Seq.empty
       where
-        -- TODO replace (Int,Int) with Seq Int
         go :: [Int] -> [Int] -> Int -> Seq Int -> Int
         go xs@(x:xs') ys@(y:ys') p s
           | p < tgt = go xs ys' (p+y) (s|>y)
